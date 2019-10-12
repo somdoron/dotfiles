@@ -106,10 +106,10 @@ scdoc
 
 %pre --interpreter=/usr/bin/bash
 exec < /dev/tty6 > /dev/tty6 2> /dev/tty6
-chvt 6
+chvt 6r
 
-read -s "Enter root password:" ROOT_PASSWORD
-read -s "Enter somdoron password:" PASSWORD
+read -p -s "Enter root password:" ROOT_PASSWORD
+read -p -s "Enter somdoron password:" PASSWORD
 echo
 sleep 1
 
