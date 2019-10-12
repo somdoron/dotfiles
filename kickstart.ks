@@ -104,7 +104,7 @@ gdk-pixbuf2-devel
 scdoc
 %end
 
-%pre --interpreter=/usr/bin/bash
+%pre --interpreter=/usr/bin/bash --logfile /tmp/pre.log
 exec < /dev/tty6 > /dev/tty6 2> /dev/tty6
 chvt 6r
 
