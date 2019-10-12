@@ -101,7 +101,12 @@ json-c-devel
 pango-devel
 cairo-devel
 gdk-pixbuf2-devel
+libevdev-devel
+pam-devel
+freerdp1.2-devel
+libwinpr-devel
 scdoc
+dmenu
 %end
 
 %pre --interpreter=/usr/bin/bash
@@ -109,6 +114,7 @@ exec < /dev/tty6 > /dev/tty6 2> /dev/tty6
 chvt 6r
 
 read -s -p "Enter root password:" ROOT_PASSWORD
+echo
 read -s -p "Enter somdoron password:" PASSWORD
 echo
 sleep 1
@@ -124,10 +130,10 @@ exec < /dev/tty1 > /dev/tty1 2> /dev/tty1
 
 # install mono and nodejs
 #rpm --import "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"
-#su -c 'curl https://download.mono-project.com/repo/centos8-stable.repo | tee /etc/yum.repos.d/mono-centos8-stable.repo'
-#curl -sL https://rpm.nodesource.com/setup_12.x | bash -
-#dnf -q update
-#dnf -q install nodejs mono-devel
+su -c 'curl https://download.mono-project.com/repo/centos8-stable.repo | tee /etc/yum.repos.d/mono-centos8-stable.repo'
+curl -sL https://rpm.nodesource.com/setup_12.x | bash -
+dnf -y update
+dnf -y install nodejs mono-devel ffmpeg-devel
 
 # install wlroots and sway 
 mkdir -p /tmp/swaywm
@@ -140,6 +146,24 @@ ninja -C build install
 cd ..
 git clone --branch 1.2 https://github.com/swaywm/sway.git
 cd sway
+meson --prefix /usr build
+ninja -C build
+ninja -C build install
+cd ..
+git clone --branch 1.5 https://github.com/swaywm/swayidle.git
+cd swayidle
+meson --prefix /usr build
+ninja -C build
+ninja -C build install
+cd ..
+git clone --branch 1.4 https://github.com/swaywm/swaylock.git
+cd swaylock
+meson --prefix /usr build
+ninja -C build
+ninja -C build install
+cd ..
+git clone --branch 1.0 https://github.com/swaywm/swaybg.git
+cd swaybg
 meson --prefix /usr build
 ninja -C build
 ninja -C build install
