@@ -159,17 +159,17 @@ mkdir -p /home/somdoron/.ssh
 echo "AddKeysToAgent yes" > /home/somdoron/.ssh/config
 
 # bash profile
-echo "if [[ -z $WAYLAND_DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then exec 
-    eval $(ssh-agent)
+echo "if [[ -z \$WAYLAND_DISPLAY ]] && [[ \$(tty) = /dev/tty1 ]]; then exec 
+    eval \$(ssh-agent)
     export _JAVA_AWT_WM_NONREPARENTING=1 
 	sway
 	exit 0
 fi
 
-if [ -z "$SSH_AUTH_SOCK" ] ; then
-	eval $(ssh-agent)
+if [ -z "\$SSH_AUTH_SOCK" ] ; then
+	eval \$(ssh-agent)
 fi
-" > /home/somdoron/.bash_profile
+" >> /home/somdoron/.bash_profile
 
 %end
 
