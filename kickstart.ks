@@ -108,8 +108,8 @@ scdoc
 exec < /dev/tty6 > /dev/tty6 2> /dev/tty6
 chvt 6
 
-read -p "Enter root password:" ROOT_PASSWORD
-read -p "Enter somdoron password:" PASSWORD
+read -s "Enter root password:" ROOT_PASSWORD
+read -s "Enter somdoron password:" PASSWORD
 echo
 sleep 1
 
