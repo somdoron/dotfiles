@@ -10,7 +10,7 @@ text
 rootpw --lock
 
 # User
-user --groups=wheel --name=somdoron
+%include /tmp/user.ks
 
 # System timezone
 timezone Asia/Jerusalem
@@ -105,6 +105,20 @@ pango-devel
 cairo-devel
 gdk-pixbuf2-devel
 scdoc
+%end
+
+%pre --interpreter=/usr/bin/bash
+exec < /dev/tty6 > /dev/tty6 2> /dev/tty6
+chvt 6
+
+read -p "Enter somdoron password:" PASSWORD
+echo
+sleep 1
+
+echo "user --groups=wheel --name=somdoron --password=$PASSWORD" > /tmp/user.ks
+
+chvt 1
+exec < /dev/tty1 > /dev/tty1 2> /dev/tty1
 %end
 
 %post
