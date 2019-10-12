@@ -63,8 +63,9 @@ vim
 openssh
 rxvt-unicode
 chromium
-libreoffice
 ark
+zip
+unzip
 alsa-plugins-pulseaudio
 pulseaudio
 pulseaudio-module-bluetooth
@@ -108,7 +109,7 @@ libwinpr-devel
 scdoc
 dmenu
 mercurial
-brightnessctl
+light
 %end
 
 %pre --interpreter=/usr/bin/bash
