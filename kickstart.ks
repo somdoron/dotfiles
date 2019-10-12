@@ -111,6 +111,7 @@ dmenu
 mercurial
 light
 gtk3-devel
+libjpeg-turbo-devel
 %end
 
 %pre --interpreter=/usr/bin/bash
@@ -175,6 +176,12 @@ ninja -C build install
 cd ..
 git clone --branch 1.0 https://github.com/swaywm/swaybg.git
 cd swaybg
+meson --prefix /usr build
+ninja -C build
+ninja -C build install
+cd ..
+git clone --branch v1.2.0 https://github.com/emersion/grim.git
+cd grim
 meson --prefix /usr build
 ninja -C build
 ninja -C build install
