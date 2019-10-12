@@ -6,9 +6,6 @@ repo --name=rpmfusion-nonfree --mirrorlist="https://mirrors.rpmfusion.org/mirror
 repo --name=rpmfusion-nonfree-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-30&arch=x86_64" --cost=0
 text
 
-# Root password
-rootpw --lock
-
 # User
 %include /tmp/user.ks
 
@@ -111,11 +108,13 @@ scdoc
 exec < /dev/tty6 > /dev/tty6 2> /dev/tty6
 chvt 6
 
+read -p "Enter root password:" ROOT_PASSWORD
 read -p "Enter somdoron password:" PASSWORD
 echo
 sleep 1
 
-echo "user --groups=wheel --name=somdoron --password=$PASSWORD" > /tmp/user.ks
+echo "user --groups=wheel --name=somdoron --password=$PASSWORD
+rootpw $ROOT_PASSWORD" > /tmp/user.ks
 
 chvt 1
 exec < /dev/tty1 > /dev/tty1 2> /dev/tty1
