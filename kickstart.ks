@@ -112,6 +112,8 @@ mercurial
 light
 gtk3-devel
 libjpeg-turbo-devel
+chromium-libs-media-freeworld
+ffmpeg-devel
 %end
 
 %pre --interpreter=/usr/bin/bash
@@ -145,7 +147,7 @@ echo
 curl https://download.mono-project.com/repo/centos8-stable.repo | tee /etc/yum.repos.d/mono-centos8-stable.repo
 curl -sL https://rpm.nodesource.com/setup_12.x | bash -
 dnf -y update
-dnf -y install nodejs mono-devel ffmpeg-devel
+dnf -y install nodejs mono-devel
 
 # install wlroots and sway 
 mkdir -p /tmp/swaywm
