@@ -108,11 +108,12 @@ libwinpr-devel
 scdoc
 dmenu
 mercurial
+brightnessctl
 %end
 
 %pre --interpreter=/usr/bin/bash
 exec < /dev/tty6 > /dev/tty6 2> /dev/tty6
-chvt 6r
+chvt 6
 
 read -s -p "Enter root password:" ROOT_PASSWORD
 echo
@@ -127,11 +128,18 @@ chvt 1
 exec < /dev/tty1 > /dev/tty1 2> /dev/tty1
 %end
 
-%post --logfile /tmp/post.log
+%post --logfile=/tmp/post.log --interpreter=/usr/bin/bash
+exec < /dev/tty6 > /dev/tty6 2> /dev/tty6
+chvt 6
+
+echo
+echo "################################"
+echo "# Running Post Script          #"
+echo "################################"
+echo
 
 # install mono and nodejs
-#rpm --import "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"
-su -c 'curl https://download.mono-project.com/repo/centos8-stable.repo | tee /etc/yum.repos.d/mono-centos8-stable.repo'
+curl https://download.mono-project.com/repo/centos8-stable.repo | tee /etc/yum.repos.d/mono-centos8-stable.repo
 curl -sL https://rpm.nodesource.com/setup_12.x | bash -
 dnf -y update
 dnf -y install nodejs mono-devel ffmpeg-devel
@@ -207,5 +215,8 @@ fi
 mkdir -p /home/somdoron/.config/sway
 cp /etc/sway/config /home/somdoron/.config/sway/
 chown -R somdoron /home/somdoron/.config
+
+chvt 1
+exec < /dev/tty1 > /dev/tty1 2> /dev/tty1
 
 %end
