@@ -64,7 +64,6 @@ vim
 openssh
 rxvt-unicode
 chromium
-ark
 zip
 unzip
 alsa-plugins-pulseaudio
@@ -111,6 +110,7 @@ scdoc
 dmenu
 mercurial
 light
+gtk3-devel
 %end
 
 %pre --interpreter=/usr/bin/bash
@@ -217,6 +217,12 @@ fi
 mkdir -p /home/somdoron/.config/sway
 cp /etc/sway/config /home/somdoron/.config/sway/
 chown -R somdoron /home/somdoron/.config
+
+# Autologin
+mkdir -p /etc/systemd/system/getty@tty1.service.d/
+echo "[Service]
+ExecStart=
+ExecStart=-/sbin/agetty --autologin somdoron --noclear %I $TERM" > /etc/systemd/system/getty@tty1.service.d/override.conf
 
 chvt 1
 exec < /dev/tty1 > /dev/tty1 2> /dev/tty1
