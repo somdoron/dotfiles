@@ -66,8 +66,6 @@ vim
 openssh
 rxvt-unicode
 chromium
-google-roboto-fonts
-google-roboto-mono-fonts
 libreoffice
 ark
 alsa-plugins-pulseaudio
@@ -88,7 +86,7 @@ chrony
 wayland-devel
 wayland-protocols-devel
 mesa-libEGL-devel
-Mesa-libGLESv2-devel
+mesa-libGLES-devel
 mesa-libgbm-devel
 libdrm-devel
 libinput-devel
@@ -134,7 +132,7 @@ ninja -C build
 ninja -C build install
 cd ..
 popd
-rm -r /tmp/swaywm
+rm -rf /tmp/swaywm
 
 #vimrc configuration
 echo "set exrc
