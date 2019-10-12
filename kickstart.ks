@@ -107,6 +107,7 @@ freerdp1.2-devel
 libwinpr-devel
 scdoc
 dmenu
+mercurial
 %end
 
 %pre --interpreter=/usr/bin/bash
@@ -168,6 +169,10 @@ meson --prefix /usr build
 ninja -C build
 ninja -C build install
 cd ..
+hg clone https://hg.sr.ht/~scoopta/wofi
+cd wofi/Release
+make
+cp wofi /usr/bin
 popd
 rm -rf /tmp/swaywm
 
@@ -177,16 +182,18 @@ set secure
 set tabstop=4
 set shiftwidth=4
 set expandtab" > /home/somdoron/.vimrc
+chown somdoron /home/somdoron/.vimrc
 
 # ssh
 mkdir -p /home/somdoron/.ssh
 echo "AddKeysToAgent yes" > /home/somdoron/.ssh/config
+chown -R somdoron /home/somdoron/.ssh
 
 # bash profile
 echo "if [[ -z \$WAYLAND_DISPLAY ]] && [[ \$(tty) = /dev/tty1 ]]; then exec 
     eval \$(ssh-agent)
     export _JAVA_AWT_WM_NONREPARENTING=1 
-	sway
+	exec sway
 	exit 0
 fi
 
@@ -194,5 +201,11 @@ if [ -z "\$SSH_AUTH_SOCK" ] ; then
 	eval \$(ssh-agent)
 fi
 " >> /home/somdoron/.bash_profile
+
+# default sway config
+
+mkdir -p /home/somdoron/.config/sway
+cp /etc/sway/config /home/somdoron/.config/sway/
+chown -R somdoron /home/somdoron/.config
 
 %end
