@@ -110,8 +110,8 @@ scdoc
 dmenu
 mercurial
 light
-gtk3-devel
-libjpeg-turbo-devel
+#gtk3-devel
+#libjpeg-turbo-devel
 chromium-libs-media-freeworld
 ffmpeg-devel
 %end
@@ -149,9 +149,12 @@ curl -sL https://rpm.nodesource.com/setup_12.x | bash -
 dnf -y update
 dnf -y install nodejs mono-devel
 
-# install wlroots and sway 
+# start compiling packages
 mkdir -p /tmp/swaywm
 pushd /tmp/swaywm
+
+# wlroots 
+
 git clone --branch 0.8.1 https://github.com/swaywm/wlroots.git
 cd wlroots
 meson --prefix /usr build 
@@ -164,36 +167,49 @@ meson --prefix /usr build
 ninja -C build
 ninja -C build install
 cd ..
+
+# sway
 git clone --branch 1.5 https://github.com/swaywm/swayidle.git
 cd swayidle
 meson --prefix /usr build
 ninja -C build
 ninja -C build install
 cd ..
+
+# swaylock
 git clone --branch 1.4 https://github.com/swaywm/swaylock.git
 cd swaylock
 meson --prefix /usr build
 ninja -C build
 ninja -C build install
 cd ..
+
+# swaybg
 git clone --branch 1.0 https://github.com/swaywm/swaybg.git
 cd swaybg
 meson --prefix /usr build
 ninja -C build
 ninja -C build install
 cd ..
+
+# grim
+dnf -y install libjpeg-turbo-devel
 git clone --branch v1.2.0 https://github.com/emersion/grim.git
 cd grim
 meson --prefix /usr build
 ninja -C build
 ninja -C build install
 cd ..
+
+# wofi
+dnf -y install gtk3-devel 
 hg clone https://hg.sr.ht/~scoopta/wofi
 cd wofi/Release
 make
 cp wofi /usr/bin
+
+# done with compilation
 popd
-rm -rf /tmp/swaywm
 
 #vimrc configuration
 echo "set exrc
