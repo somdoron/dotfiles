@@ -78,6 +78,7 @@ pantheon-agent-polkit
 elementary-calculator
 elementary-code
 elementary-files
+elementary-sound-theme
 elementary-icon-theme
 elementary-theme
 elementary-wallpapers
@@ -109,12 +110,11 @@ scdoc
 %post
 
 # install mono and nodejs
-rpm --import "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"
-curl -sL https://rpm.nodesource.com/setup_12.x | bash -
-rpm --import "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"
-su -c 'curl https://download.mono-project.com/repo/centos8-stable.repo | tee /etc/yum.repos.d/mono-centos8-stable.repo'
-dnf -q update
-dnf -q install nodejs mono-devel
+#rpm --import "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"
+#su -c 'curl https://download.mono-project.com/repo/centos8-stable.repo | tee /etc/yum.repos.d/mono-centos8-stable.repo'
+#curl -sL https://rpm.nodesource.com/setup_12.x | bash -
+#dnf -q update
+#dnf -q install nodejs mono-devel
 
 # install wlroots and sway 
 mkdir -p /tmp/swaywm
@@ -144,6 +144,19 @@ set expandtab" > /home/somdoron/.vimrc
 # ssh
 mkdir -p /home/somdoron/.ssh
 echo "AddKeysToAgent yes" > /home/somdoron/.ssh/config
+
+# bash profile
+echo "if [[ -z $WAYLAND_DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then exec 
+    eval $(ssh-agent)
+    export _JAVA_AWT_WM_NONREPARENTING=1 
+	sway
+	exit 0
+fi
+
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+	eval $(ssh-agent)
+fi
+" > /home/somdoron/.bash_profile
 
 %end
 
