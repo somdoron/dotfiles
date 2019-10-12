@@ -203,7 +203,7 @@ set shiftwidth=4
 set expandtab" > /home/somdoron/.vimrc
 chown somdoron /home/somdoron/.vimrc
 
-# ssh
+# ssh configuration
 mkdir -p /home/somdoron/.ssh
 echo "AddKeysToAgent yes" > /home/somdoron/.ssh/config
 chown -R somdoron /home/somdoron/.ssh
@@ -222,7 +222,6 @@ fi
 " >> /home/somdoron/.bash_profile
 
 # default sway config
-
 mkdir -p /home/somdoron/.config/sway
 cp /etc/sway/config /home/somdoron/.config/sway/
 chown -R somdoron /home/somdoron/.config
@@ -232,6 +231,12 @@ mkdir -p /etc/systemd/system/getty@tty1.service.d/
 echo "[Service]
 ExecStart=
 ExecStart=-/sbin/agetty --autologin somdoron --noclear %I $TERM" > /etc/systemd/system/getty@tty1.service.d/override.conf
+
+# Enable pulse audio switch on connect
+echo "
+# automatically switch to newly-connected devices
+load-module module-switch-on-connect
+" >> /etc/pulse/default.pa
 
 chvt 1
 exec < /dev/tty1 > /dev/tty1 2> /dev/tty1
