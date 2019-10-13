@@ -114,6 +114,7 @@ light
 #libjpeg-turbo-devel
 chromium-libs-media-freeworld
 ffmpeg-devel
+open-sans-fonts
 %end
 
 %pre --interpreter=/usr/bin/bash
@@ -253,6 +254,29 @@ echo "
 # automatically switch to newly-connected devices
 load-module module-switch-on-connect
 " >> /etc/pulse/default.pa
+
+# gsettings
+echo "[org.gnome.desktop.interface]
+cursor-theme='elementary'
+document-font-name='Open Sans 10'
+font-name='Open Sans 9'
+gtk-theme='elementary'
+icon-theme='elementary'
+monospace-font-name='Monospace 10'
+show-unicode-menu=false
+toolbar-style='icons'
+
+[org.gnome.desktop.sound]
+theme-name='elementary'
+
+[org.gnome.desktop.wm.preferences]
+button-layout=':menu'
+theme='elementary'
+titlebar-font='Open Sans Bold 9'
+titlebar-uses-system-font=false
+" >  /usr/share/glib-2.0/schemas/20-sway.desktop.gschema.override
+
+glib-compile-schemas /usr/share/glib-2.0/schemas
 
 chvt 1
 exec < /dev/tty1 > /dev/tty1 2> /dev/tty1
