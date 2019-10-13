@@ -1,0 +1,58 @@
+URxvt*scrollBar: false
+! URxvt*scrollBar_right: false
+! URxvt*scrollBar_floating: false
+! URxvt*.transparent: true
+URxvt*.shading: 20
+
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintfull
+
+Xcursor.size: 24
+
+URxvt.font:           xft:Roboto Mono:pixelsize=14:antialias=true,xft:Droid Sans Mono:pixelsize=13:antialias=true
+URxvt.imFont:         xft:Roboto Mono:pixelsize=14:antialias=true,xft:Droid Sans Mono:pixelsize=13:antialias=true
+URxvt.boldFont:       xft:Roboto Mono:pixelsize=14:antialias=true,xft:Droid Sans Mono:pixelsize=13:antialias=true
+URxvt.italicFont:     xft:Roboto Mono:pixelsize=14:antialias=true,xft:Droid Sans Mono:pixelsize=13:antialias=true
+URxvt.boldItalicFont: xft:Roboto Mono:pixelsize=14:antialias=true,xft:Droid Sans Mono:pixelsize=13:antialias=true
+URxvt.letterSpace: -1
+
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+
+URxvt*depth: 32
+URxvt*background: rgba:1800/1800/1800/FA00
+!URxvt*background:                     #181818
+URxvt*foreground:                     #d8d8d8
+URxvt*cursorColor:                    #d8d8d8
+
+URxvt*scrollColor:                    #d8d8d8
+URxvt*highlightColor:                 #383838
+URxvt*highlightTextColor:             #b8b8b8
+
+URxvt*color0:                         #181818
+URxvt*color1:                         #ab4642
+URxvt*color2:                         #a1b56c
+URxvt*color3:                         #f7ca88
+URxvt*color4:                         #7cafc2
+URxvt*color5:                         #ba8baf
+URxvt*color6:                         #86c1b9
+URxvt*color7:                         #d8d8d8
+URxvt*color8:                         #585858
+URxvt*color9:                         #ab4642
+URxvt*color10:                        #a1b56c
+URxvt*color11:                        #f7ca88
+URxvt*color12:                        #7cafc2
+URxvt*color13:                        #ba8baf
+URxvt*color14:                        #86c1b9
+URxvt*color15:                        #f8f8f8
+
+URxvt*color16:                        #dc9656
+URxvt*color17:                        #a16946
+URxvt*color18:                        #282828
+URxvt*color19:                        #383838
+URxvt*color20:                        #b8b8b8
+URxvt*color21:                        #e8e8e8
+
+Xcursor.theme: Adwaita
