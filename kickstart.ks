@@ -16,9 +16,9 @@ timezone Asia/Jerusalem
 
 # Disk
 #ignoredisk --only-use=nvme0n1
-clearpart --all --initlabel # --drives=nvme0n1
+clearpart --all --initlabel --drives=nvme0n1
 autopart --encrypted --type lvm --nohome
-bootloader --location=mbr # --boot-drive=nvme0n1
+bootloader --location=mbr --boot-drive=nvme0n1
 
 # Keyboard
 keyboard --vckeymap=us --xlayouts='us','il' --switch=grp:alt_shift_toggle,grp:caps_toggle
@@ -27,8 +27,8 @@ keyboard --vckeymap=us --xlayouts='us','il' --switch=grp:alt_shift_toggle,grp:ca
 lang en_US.UTF-8
 
 # Network information
-#network  --bootproto=dhcp --device=enp0s31f6 --ipv6=auto --activate --onboot ONBOOT --essid=DS_5
-#network  --hostname=somdoron.localdomain
+network  --bootproto=dhcp --device=wlp61s0 --ipv6=auto --activate --onboot=yes --essid=DS_5 --wpakey=1234 #CHANGE 
+network  --hostname=somdoron.localdomain
 
 # Sysem services
 services --enabled="chronyd"
