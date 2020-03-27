@@ -1,0 +1,4 @@
+ctrl - return : /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -d ~
+
+ctrl - i : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
+

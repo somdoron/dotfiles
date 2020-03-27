@@ -1,0 +1,4 @@
+yabai -m config layout bsp
+
+yabai -m config status_bar on
+
